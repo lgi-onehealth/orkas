@@ -1,0 +1,98 @@
+{
+    "name": "",
+    "homePage": "",
+    "repos": {
+        "nf-core/modules": {
+            "amrfinderplus/run": {
+                "git_sha": "8002e373b5469b96985bf6f5c89e35f2454041b5"
+            },
+            "amrfinderplus/update": {
+                "git_sha": "8002e373b5469b96985bf6f5c89e35f2454041b5"
+            },
+            "bcftools/annotate": {
+                "git_sha": "682f789f93070bd047868300dd018faf3d434e7c"
+            },
+            "bcftools/consensus": {
+                "git_sha": "682f789f93070bd047868300dd018faf3d434e7c"
+            },
+            "bcftools/index": {
+                "git_sha": "682f789f93070bd047868300dd018faf3d434e7c"
+            },
+            "bcftools/mpileup": {
+                "git_sha": "682f789f93070bd047868300dd018faf3d434e7c"
+            },
+            "bcftools/norm": {
+                "git_sha": "682f789f93070bd047868300dd018faf3d434e7c"
+            },
+            "bcftools/view": {
+                "git_sha": "682f789f93070bd047868300dd018faf3d434e7c"
+            },
+            "bedtools/genomecov": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
+            "bedtools/maskfasta": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
+            "bedtools/merge": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
+            "bowtie2/align": {
+                "git_sha": "848ee9a215d02d80be033bfa60881700f2bd914c"
+            },
+            "bowtie2/build": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
+            "bracken/bracken": {
+                "git_sha": "9c386c5dd8a42b5cb589cea7244e3960c8dfdacf"
+            },
+            "bwa/index": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
+            "bwa/mem": {
+                "git_sha": "4f5274c3de0c9521f5033893ff61057a74c45ba9"
+            },
+            "fastp": {
+                "git_sha": "9b51362a532a14665f513cf987531f9ea5046b74"
+            },
+            "freebayes": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
+            "gunzip": {
+                "git_sha": "fa37e0662690c4ec4260dae282fbce08777503e6"
+            },
+            "iqtree": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
+            "kraken2/kraken2": {
+                "git_sha": "abe025677cdd805cc93032341ab19885473c1a07"
+            },
+            "mash/dist": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
+            "minimap2/align": {
+                "git_sha": "1a5a9e7b4009dcf34e6867dd1a5a1d9a718b027b"
+            },
+            "mlst": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
+            "samtools/faidx": {
+                "git_sha": "897c33d5da084b61109500ee44c01da2d3e4e773"
+            },
+            "samtools/fixmate": {
+                "git_sha": "897c33d5da084b61109500ee44c01da2d3e4e773"
+            },
+            "samtools/index": {
+                "git_sha": "897c33d5da084b61109500ee44c01da2d3e4e773"
+            },
+            "samtools/sort": {
+                "git_sha": "897c33d5da084b61109500ee44c01da2d3e4e773"
+            },
+            "sistr": {
+                "git_sha": "f0800157544a82ae222931764483331a81812012"
+            },
+            "unicycler": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            }
+        }
+    }
+}
