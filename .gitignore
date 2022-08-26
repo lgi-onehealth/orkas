@@ -1,0 +1,6 @@
+.nextflow*
+.vscode
+*private-key.json
+.env
+work
+.DS_Store
