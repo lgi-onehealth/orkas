@@ -1,0 +1,18 @@
+- name: read qc
+  command: nextflow -C tests/config/nextflow.config run ./tests/subworkflows/reads_qc -entry test_reads_qc -profile reads_qc
+  tags:
+    - subworkflows
+    - reads_qc
+  files:
+    - path: ./test_output/reads_qc/phcueqc/test.phcue.txt
+    - path: ./test_output/reads_qc/phcueqc/versions.yml
+    - path: ./test_output/reads_qc/lighter/DRR040053_1.cor.fq.gz
+    - path: ./test_output/reads_qc/lighter/DRR040053_2.cor.fq.gz
+    - path: ./test_output/reads_qc/lighter/versions.yml
+    - path: ./test_output/reads_qc/fastp/test.fastp.html
+    - path: ./test_output/reads_qc/fastp/test.fastp.json
+    - path: ./test_output/reads_qc/fastp/test.fastp.log
+    - path: ./test_output/reads_qc/fastp/test.merged.fastq.gz
+    - path: ./test_output/reads_qc/fastp/test_1.fastp.fastq.gz
+    - path: ./test_output/reads_qc/fastp/test_2.fastp.fastq.gz
+    - path: ./test_output/reads_qc/fastp/versions.yml

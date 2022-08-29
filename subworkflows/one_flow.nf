@@ -1,8 +1,6 @@
 // TODO: ADD SPECIATION WORKFLOW WITH KRAKEN2
 // TODO: BRING SPECIES INTO THE META DATA TO INFORM DOWNSTREAM TYPING
 // load nf-core modules
-// short read QC imports
-include { FASTP } from '../modules/nf-core/modules/fastp/main'
 // Assembly imports
 include { UNICYCLER } from '../modules/nf-core/modules/unicycler/main'
 // typing imports
@@ -34,45 +32,10 @@ include { MINIMAP2_ALIGN } from '../modules/nf-core/modules/minimap2/align/main'
 // tree building imports
 include { IQTREE } from '../modules/nf-core/modules/iqtree/main'
 // load local modules
-include { PHCUE } from '../modules/local/phcue'
-include { LIGHTER } from '../modules/local/lighter'
 include { SAMTOOLS_MARKDUP } from '../modules/local/samtools/markdup'
 include { SAMCLIP } from '../modules/local/samclip'
 include { GOALIGN_APPEND } from '../modules/local/goalign/append'
 
-
-workflow QC {
-    take:
-        data
-    main:
-        save_trimmed_fail = false
-        save_merged       = true
-        PHCUE(data)
-        raw_reads_ch = PHCUE.out.reads.cross(PHCUE.out.genome_size) {meta, data -> meta.id}.map {
-            it -> {
-                def meta = it[0][0]
-                def reads = it[0][1]
-                def genome_size = it[1][1]
-                meta.genome_size = genome_size
-                return [meta, reads]
-            }
-        }
-        LIGHTER(raw_reads_ch)
-        FASTP(LIGHTER.out.corrected_reads, save_trimmed_fail, save_merged)
-        reads_ch = FASTP.out.reads.cross(FASTP.out.reads_merged) {
-            it -> it[0].id
-            }.map {
-                it -> {
-                    def meta = it[0][0]
-                    def reads = it[0][1]
-                    def reads_merged = it[1][1]
-                    return [meta, reads, [reads_merged]]
-                }
-            }
-    emit:
-        reads = reads_ch
-        corrected_reads = LIGHTER.out.corrected_reads
-}
 
 workflow ASSEMBLY {
     // TODO: ADD QUAST STEP TO GET ASSEMBLY METRICS
