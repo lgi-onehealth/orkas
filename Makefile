@@ -14,4 +14,4 @@ test: clean
 	pytest --symlink --kwdof --color=yes --git-aware
 
 clean:
-	rm -rf work test_output
+	rm -rf work test_output .nextflow*
