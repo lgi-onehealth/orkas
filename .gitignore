@@ -4,3 +4,4 @@
 .env
 work
 .DS_Store
+test_output/
