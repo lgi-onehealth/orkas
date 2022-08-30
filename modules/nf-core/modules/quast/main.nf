@@ -1,4 +1,5 @@
 process QUAST {
+    tag "$meta.id"
     label 'process_medium'
 
     conda (params.enable_conda ? 'bioconda::quast=5.2.0' : null)
