@@ -51,6 +51,9 @@
             "bwa/mem": {
                 "git_sha": "4f5274c3de0c9521f5033893ff61057a74c45ba9"
             },
+            "emmtyper": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
             "fastp": {
                 "git_sha": "9b51362a532a14665f513cf987531f9ea5046b74"
             },
@@ -63,6 +66,9 @@
             "kraken2/kraken2": {
                 "git_sha": "abe025677cdd805cc93032341ab19885473c1a07"
             },
+            "lissero": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
             "mash/dist": {
                 "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
             },
@@ -70,6 +76,9 @@
                 "git_sha": "1a5a9e7b4009dcf34e6867dd1a5a1d9a718b027b"
             },
             "mlst": {
+                "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
+            },
+            "ngmaster": {
                 "git_sha": "e745e167c1020928ef20ea1397b6b4d230681b4d"
             },
             "quast": {
