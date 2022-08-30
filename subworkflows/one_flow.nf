@@ -1,8 +1,6 @@
 // TODO: ADD SPECIATION WORKFLOW WITH KRAKEN2
 // TODO: BRING SPECIES INTO THE META DATA TO INFORM DOWNSTREAM TYPING
 // load nf-core modules
-// Assembly imports
-include { UNICYCLER } from '../modules/nf-core/modules/unicycler/main'
 // typing imports
 include { MLST } from '../modules/nf-core/modules/mlst/main'
 include { SISTR } from '../modules/nf-core/modules/sistr/main'
@@ -37,21 +35,6 @@ include { SAMCLIP } from '../modules/local/samclip'
 include { GOALIGN_APPEND } from '../modules/local/goalign/append'
 
 
-workflow ASSEMBLY {
-    // TODO: ADD QUAST STEP TO GET ASSEMBLY METRICS
-    take:
-        reads
-    main:
-        // create channel to add the long reads to the assembly 
-        // perhaps at some point this will be useful
-        reads_ch = reads.map {meta, shortreads, mergedreads -> {
-                    return [meta, shortreads, [], mergedreads]
-                }
-            }
-        UNICYCLER(reads_ch)
-    emit:
-        assembly =  UNICYCLER.out.scaffolds
-}
 
 workflow TYPING {
     take:

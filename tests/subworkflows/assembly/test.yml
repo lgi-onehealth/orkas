@@ -1,0 +1,12 @@
+- name: assembly
+  command: nextflow -C tests/config/nextflow.config run ./tests/subworkflows/assembly -entry test_assembly -profile assembly
+  tags:
+    - subworkflows
+    - assembly
+  files:
+    - path: ./test_output/assembly/unicycler/DRR040053.assembly.gfa.gz
+    - path: ./test_output/assembly/unicycler/DRR040053.scaffolds.fa.gz
+    - path: ./test_output/assembly/unicycler/DRR040053.unicycler.log
+    - path: ./test_output/assembly/unicycler/versions.yml
+    - path: ./test_output/assembly/quast/DRR040053.quast.report.tsv
+    - path: ./test_output/assembly/quast/versions.yml
