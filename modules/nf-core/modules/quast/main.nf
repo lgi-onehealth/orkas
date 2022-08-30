@@ -36,7 +36,7 @@ process QUAST {
         $args \\
         ${consensus.join(' ')}
 
-    ln -s ${prefix}/report.tsv
+    ln -s ${prefix}/report.tsv ${meta.id}.quast.report.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
