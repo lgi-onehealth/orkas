@@ -7,15 +7,15 @@ process QUAST {
         'quay.io/biocontainers/quast:5.2.0--py39pl5321h2add14b_1' }"
 
     input:
-    path consensus
+    tuple val(meta), path(consensus)
     path fasta
     path gff
     val use_fasta
     val use_gff
 
     output:
-    path "${prefix}"    , emit: results
-    path '*.tsv'        , emit: tsv
+    tuple val(meta), path("${prefix}")    , emit: results
+    tuple val(meta), path('*.tsv')        , emit: tsv
     path "versions.yml" , emit: versions
 
     when:
