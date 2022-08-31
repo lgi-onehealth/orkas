@@ -1,3 +1,32 @@
+def select_organism_key(organism) {
+    def organisms = [
+        'Acinetobacter baumannii',
+        'Burkholderia cepacia',
+        'Burkholderia pseudomallei',
+        'Campylobacter',
+        'Clostridioides difficile',
+        'Enterococcus faecalis',
+        'Enterococcus faecium',
+        'Escherichia',
+        'Klebsiella',
+        'Neisseria',
+        'Pseudomonas aeruginosa',
+        'Salmonella', 
+        'Staphylococcus aureus',
+        'Staphylococcus pseudintermedius',
+        'Streptococcus agalactiae',
+        'Streptococcus pneumoniae',
+        'Streptococcus pyogenes',
+        'Vibrio cholerae',
+    ]
+    for (org in organisms) {
+        if (organism =~ org) {
+            return org.replaceAll(' ', '_')
+        }
+    }
+    return null
+}
+
 process AMRFINDERPLUS_RUN {
     tag "$meta.id"
     label 'process_medium'
@@ -22,8 +51,9 @@ process AMRFINDERPLUS_RUN {
     script:
     def args = task.ext.args ?: ''
     def is_compressed = fasta.getName().endsWith(".gz") ? true : false
-    prefix = task.ext.prefix ?: "${meta.id}"
-    organism_param = meta.containsKey("organism") ? "--organism ${meta.organism} --mutation_all ${prefix}-mutations.tsv" : ""
+    prefix = task.ext.prefix ?: "${meta.id}.amrfinder"
+    organism = meta.containsKey("organism") ? select_organism_key(meta.organism): null
+    organism_param = organism ? "--organism ${organism} --mutation_all ${prefix}-mutations.tsv" : ""
     fasta_name = fasta.getName().replace(".gz", "")
     fasta_param = "-n"
     if (meta.containsKey("is_proteins")) {
