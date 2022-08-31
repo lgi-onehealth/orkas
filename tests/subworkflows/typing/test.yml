@@ -1,0 +1,32 @@
+- name: typing
+  command: nextflow -C tests/config/nextflow.config run ./tests/subworkflows/typing -entry test_typing -profile typing
+  tags:
+    - subworkflows
+    - typing
+  files:
+    - path: ./test_output/typing/mlst/LIS001.mlst.tsv
+    - path: ./test_output/typing/mlst/NME001.mlst.tsv
+    - path: ./test_output/typing/mlst/NGO001.mlst.tsv
+    - path: ./test_output/typing/mlst/SPY001.mlst.tsv
+    - path: ./test_output/typing/mlst/SEN001.mlst.tsv
+    - path: ./test_output/typing/mlst/versions.yml
+    - path: ./test_output/typing/amrfinder/LIS001.amrfinder.tsv
+    - path: ./test_output/typing/amrfinder/NME001.amrfinder.tsv
+    - path: ./test_output/typing/amrfinder/NGO001.amrfinder.tsv
+    - path: ./test_output/typing/amrfinder/SPY001.amrfinder.tsv
+    - path: ./test_output/typing/amrfinder/SEN001.amrfinder.tsv
+    - path: ./test_output/typing/amrfinder/SEN001.amrfinder-mutations.tsv
+    - path: ./test_output/typing/amrfinder/SPY001.amrfinder-mutations.tsv
+    - path: ./test_output/typing/amrfinder/NGO001.amrfinder-mutations.tsv
+    - path: ./test_output/typing/amrfinder/NME001.amrfinder-mutations.tsv
+    - path: ./test_output/typing/amrfinder/versions.yml
+    - path: ./test_output/typing/emmtyper/SPY001.emmtyper.tsv
+    - path: ./test_output/typing/emmtyper/versions.yml
+    - path: ./test_output/typing/lissero/LIS001.lissero.tsv
+    - path: ./test_output/typing/lissero/versions.yml
+    - path: ./test_output/typing/meningotype/NME001.meningotype.tsv
+    - path: ./test_output/typing/meningotype/versions.yml
+    - path: ./test_output/typing/ngmaster/NGO001.ngmaster.tsv
+    - path: ./test_output/typing/ngmaster/versions.yml
+    - path: ./test_output/typing/sistr/SEN001.sistr.tsv
+    - path: ./test_output/typing/sistr/versions.yml
