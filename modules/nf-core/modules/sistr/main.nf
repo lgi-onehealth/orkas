@@ -22,7 +22,7 @@ process SISTR {
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ?: "${meta.id}.sistr"
     def is_compressed = fasta.getName().endsWith(".gz") ? true : false
     def fasta_name = fasta.getName().replace(".gz", "")
     def fasta_input = "-i " + fasta_name + " ${meta.id}"
