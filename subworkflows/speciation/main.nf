@@ -1,6 +1,6 @@
 
-include { KRAKEN2_KRAKEN2 } from '../modules/nf-core/modules/kraken2/kraken2/main'
-include { BRACKEN_BRACKEN } from '../modules/nf-core/modules/bracken/bracken/main'
+include { KRAKEN2_KRAKEN2 } from '../../modules/nf-core/modules/kraken2/kraken2/main'
+include { BRACKEN_BRACKEN } from '../../modules/nf-core/modules/bracken/bracken/main'
 
 
 workflow SPECIATION {

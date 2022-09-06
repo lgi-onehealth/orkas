@@ -1,0 +1,10 @@
+- name: speciation
+  command: nextflow -C tests/config/nextflow.config run ./tests/subworkflows/speciation -entry test_speciation -profile speciation
+  tags:
+    - subworkflows
+    - speciation
+  files:
+    - path: ./test_output/speciation/kraken2/SRR10903401.kraken2.report.txt
+    - path: ./test_output/speciation/kraken2/versions.yml
+    - path: ./test_output/speciation/bracken/SRR10903401_S.bracken.report.txt
+    - path: ./test_output/speciation/bracken/versions.yml
