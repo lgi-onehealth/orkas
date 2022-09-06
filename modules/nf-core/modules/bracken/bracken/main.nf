@@ -25,7 +25,7 @@ process BRACKEN_BRACKEN {
     def args = task.ext.args ?: "-l ${taxonomic_level} -t ${threshold} -r ${read_length}"
     def prefix = task.ext.prefix ?: "${meta.id}"
     def bracken_version = '2.6.2'
-    bracken_report = "${prefix}_${taxonomic_level}.tsv"
+    bracken_report = "${prefix}_${taxonomic_level}.bracken.report.tsv"
     """
     bracken \\
         ${args} \\
