@@ -1,0 +1,7 @@
+- name: create masks
+  command: nextflow -C tests/config/nextflow.config run ./tests/subworkflows/create_masks -entry test_create_masks -profile create_masks
+  tags:
+    - subworkflows
+    - create_masks
+  files:
+    - path: ./test_output/reads_qc/phcueqc/DRR040053.phcue.txt
