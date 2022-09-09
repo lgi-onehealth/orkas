@@ -6,9 +6,6 @@
 include { BCFTOOLS_CONSENSUS } from '../modules/nf-core/modules/bcftools/consensus/main'
 // tree building imports
 include { IQTREE } from '../modules/nf-core/modules/iqtree/main'
-// load local modules
-include { SAMTOOLS_MARKDUP } from '../modules/local/samtools/markdup'
-include { SAMCLIP } from '../modules/local/samclip'
 include { GOALIGN_APPEND } from '../modules/local/goalign/append'
 
 workflow ALIGN {

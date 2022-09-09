@@ -20,11 +20,16 @@ process SAMCLIP {
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ?: "${meta.id}.samclip"
+    def is_compressed = reference.getName().endsWith(".gz")
+    def ref_filename = reference.getName().replace(".gz", "") 
     """
+    if [ "$is_compressed" == true ]; then
+        gzip -d -c $reference > $ref_filename
+    fi
     samclip \\
         $args \\
-        --ref ${reference} \\
+        --ref ${ref_filename} \\
         < $sam \\
         > ${prefix}.sam \\
 

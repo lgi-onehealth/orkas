@@ -19,10 +19,16 @@ process SAMTOOLS_FAIDX {
 
     script:
     def args = task.ext.args ?: ''
+    def is_compressed = fasta.getName().endsWith('.gz')
+    def fasta_name = fasta.getName().replace(".gz", '')
     """
+    if [ "$is_compressed" = true ]; then
+        bgzip -c -d $fasta > ${fasta_name}
+    fi
+
     samtools \\
         faidx \\
-        $fasta
+        ${fasta_name}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

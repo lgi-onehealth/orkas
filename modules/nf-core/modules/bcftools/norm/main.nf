@@ -21,9 +21,17 @@ process BCFTOOLS_NORM {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def is_gzipped = fasta.getName().endsWith('.gz')
+    def fasta_name = fasta.getName().replace('.gz', '')
+
     """
+
+    if [ "${is_gzipped}" == true ] ; then
+        gzip -d -c ${fasta} > ${fasta_name}
+    fi
+
     bcftools norm \\
-        --fasta-ref ${fasta} \\
+        --fasta-ref ${fasta_name} \\
         --output ${prefix}.vcf.gz \\
         $args \\
         --threads $task.cpus \\

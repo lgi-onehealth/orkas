@@ -1,0 +1,7 @@
+- name: variant detection
+  command: nextflow -C tests/config/nextflow.config run ./tests/subworkflows/variant_detection -entry test_variant_detection -profile variant_detection
+  tags:
+    - subworkflows
+    - variant_detection
+  files:
+    - path: ./test_output/reads_qc/phcueqc/DRR040053.phcue.txt

@@ -1,16 +1,26 @@
 // variant detection imports
-include { BOWTIE2_BUILD } from '../modules/nf-core/modules/bowtie2/build/main'
-include { BOWTIE2_ALIGN } from '../modules/nf-core/modules/bowtie2/align/main'
-include { SAMTOOLS_FAIDX } from '../modules/nf-core/modules/samtools/faidx/main'
-include { SAMTOOLS_SORT as SAMTOOLS_SORT_NAME } from '../modules/nf-core/modules/samtools/sort/main'
-include { SAMTOOLS_SORT as SAMTOOLS_SORT_ORDER } from '../modules/nf-core/modules/samtools/sort/main'
-include { SAMTOOLS_FIXMATE } from '../modules/nf-core/modules/samtools/fixmate/main'
-include { FREEBAYES } from '../modules/nf-core/modules/freebayes/main'
-include { BCFTOOLS_INDEX } from '../modules/nf-core/modules/bcftools/index/main'
-include { BCFTOOLS_VIEW } from '../modules/nf-core/modules/bcftools/view/main'
-include { BCFTOOLS_NORM } from '../modules/nf-core/modules/bcftools/norm/main'
-include { BCFTOOLS_ANNOTATE } from '../modules/nf-core/modules/bcftools/annotate/main'
-include { BCFTOOLS_MPILEUP } from '../modules/nf-core/modules/bcftools/mpileup/main'
+include { BOWTIE2_BUILD } from '../../modules/nf-core/modules/bowtie2/build/main'
+include { BOWTIE2_ALIGN } from '../../modules/nf-core/modules/bowtie2/align/main'
+include { SAMTOOLS_FAIDX } from '../../modules/nf-core/modules/samtools/faidx/main'
+include { SAMTOOLS_SORT as SAMTOOLS_SORT_NAME } from '../../modules/nf-core/modules/samtools/sort/main'
+include { SAMTOOLS_SORT as SAMTOOLS_SORT_ORDER } from '../../modules/nf-core/modules/samtools/sort/main'
+include { SAMTOOLS_FIXMATE } from '../../modules/nf-core/modules/samtools/fixmate/main'
+if (params.var_detection_mode == 'freebayes') {
+    include { FREEBAYES } from '../../modules/nf-core/modules/freebayes/main'
+    include { BCFTOOLS_INDEX } from '../../modules/nf-core/modules/bcftools/index/main'
+    include { BCFTOOLS_VIEW } from '../../modules/nf-core/modules/bcftools/view/main'
+}
+if (params.var_detection_mode == 'bcftools') {
+    include { BCFTOOLS_MPILEUP } from '../../modules/nf-core/modules/bcftools/mpileup/main'
+}
+include { BCFTOOLS_NORM } from '../../modules/nf-core/modules/bcftools/norm/main'
+include { BCFTOOLS_ANNOTATE } from '../../modules/nf-core/modules/bcftools/annotate/main'
+
+
+// load local modules
+include { SAMTOOLS_MARKDUP } from '../../modules/local/samtools/markdup'
+include { SAMCLIP } from '../../modules/local/samclip'
+
 
 workflow VARIANT_DETECTION {
     take:

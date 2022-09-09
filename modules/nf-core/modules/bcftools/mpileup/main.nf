@@ -28,12 +28,19 @@ process BCFTOOLS_MPILEUP {
     def args3 = task.ext.args3 ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def mpileup = save_mpileup ? "| tee ${prefix}.mpileup" : ""
+    def is_gzipped = fasta.getName().endsWith('.gz')
+    def fasta_name = fasta.getName().replaceFirst(".gz", '')
+
     """
     echo "${meta.id}" > sample_name.list
 
+    if [ "${is_gzipped}" == true ]; then
+        gzip -d -c ${fasta} > ${fasta_name}
+    fi
+
     bcftools \\
         mpileup \\
-        --fasta-ref $fasta \\
+        --fasta-ref $fasta_name \\
         $args \\
         $bam \\
         $mpileup \\
