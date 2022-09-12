@@ -1,0 +1,7 @@
+- name: reference preprocessing
+  command: nextflow -C tests/config/nextflow.config run ./tests/subworkflows/reference_preprocessing -entry test_reference_preprocessing -profile reference_preprocessing
+  tags:
+    - subworkflows
+    - reference_preprocessing
+  files:
+    - path: ./test_output/reads_qc/phcueqc/DRR040053.phcue.txt
