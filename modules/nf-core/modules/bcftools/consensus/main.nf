@@ -21,13 +21,21 @@ process BCFTOOLS_CONSENSUS {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def mask_file = mask ? "--mask ${mask}" : ''
+    def is_gzipped = fasta.getName().endsWith('.gz')
+    def fasta_name = fasta.getName().replace('.gz', '')
+    
     """
-    cat $fasta \\
+    if [ "${is_gzipped}" == true ]; then 
+        gzip -d -c ${fasta} > ${fasta_name}
+    fi
+
+    samtools faidx $fasta_name $chrom_id \\
         | bcftools \\
             consensus \\
             $vcf \\
             $args \\
             $mask_file \\
+            | sed 's/^>.*$/>${meta.id}/' \\
             > ${prefix}.fa
 
     cat <<-END_VERSIONS > versions.yml
