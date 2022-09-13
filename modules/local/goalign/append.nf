@@ -8,11 +8,11 @@ process GOALIGN_APPEND {
         'quay.io/biocontainers/goalign:0.3.5--h65a6115_0' }"
 
     input:
-    path alignment_1
+    tuple val(meta_ref) path(reference)
     path alignment_2
 
     output:
-    path "final_align.fa"     , emit: alignment
+    path "${output_filename}"     , emit: alignment
     path "versions.yml"           , emit: versions
 
     when:
@@ -20,7 +20,7 @@ process GOALIGN_APPEND {
 
     script:
     def args = task.ext.args ?: ''
-    def output_filename = "final_align.${alignment_1.getExtension()}"
+    output_filename = "raw-align.goalign-append.fasta"
     """
     goalign append \
         -i $alignment_1 \
