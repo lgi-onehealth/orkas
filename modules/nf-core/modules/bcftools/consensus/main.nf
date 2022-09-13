@@ -8,10 +8,11 @@ process BCFTOOLS_CONSENSUS {
         'quay.io/biocontainers/bcftools:1.15.1--h0ea216a_0' }"
 
     input:
-    tuple val(meta), path(vcf), path(tbi), path(fasta), path(mask)
+    tuple val(meta), path(vcf), path(tbi), path(mask)
+    tuple val(meta_ref), path(ref_fasta), path(ref_fai)
 
     output:
-    tuple val(meta), path('*.fa'), emit: fasta
+    tuple val(meta), path('*.fasta'), emit: fasta
     path  "versions.yml"         , emit: versions
 
     when:
@@ -21,22 +22,24 @@ process BCFTOOLS_CONSENSUS {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def mask_file = mask ? "--mask ${mask}" : ''
-    def is_gzipped = fasta.getName().endsWith('.gz')
-    def fasta_name = fasta.getName().replace('.gz', '')
-    
+    def is_gzipped = ref_fasta.getName().endsWith('.gz')
+    def fasta_name = ref_fasta.getName().replace('.gz', '')
+    def ref = meta_ref.is_complete && meta_ref.chromosome_id? "samtools faidx $fasta_name $meta_ref.chromosome_id" : "cat $fasta_name"
+    def label_seqs = meta_ref.is_complete && meta_ref.chromosome_id? "sed 's/^>/>${meta_ref.chromosome_id}_/'" : "awk '/>/{\$0 = ">"${meta.id}.++i} 1'"
+
     """
     if [ "${is_gzipped}" == true ]; then 
-        gzip -d -c ${fasta} > ${fasta_name}
+        gzip -d -c ${ref_fasta} > ${fasta_name}
     fi
 
-    samtools faidx $fasta_name $chrom_id \\
+    $ref \\
         | bcftools \\
             consensus \\
             $vcf \\
             $args \\
             $mask_file \\
-            | sed 's/^>.*$/>${meta.id}/' \\
-            > ${prefix}.fa
+            | $label_seqs \\
+            > ${prefix}.fasta
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
