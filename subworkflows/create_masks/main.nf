@@ -11,17 +11,10 @@ workflow CREATE_MASKS {
         reference
         filter_min
     main:
-    //TODO: MAKE FILTER_MIN A WORKFLOW PARAMETER
-        // scale = 1
-        // filter_min = 10
-        // // create the appropriate channel for bedtools process
-        // bedtools_ch = bam.map {meta, bam ->
-        //         return [meta, bam, scale]
-        //     }
+
         BEDTOOLS_GENOMECOV(bam, [], 'bed', filter_min)
         // need this step to avoid name collision in the minimap step
-        query_ref = Channel.fromPath(reference).collectFile(name: 'query_reference.fasta').collect().map {it -> [[id: 'ref', single_end:true], it]}
-        MINIMAP2_ALIGN(query_ref, reference, false, false, false, true)
+        MINIMAP2_ALIGN(reference, reference, false, false, false, true)
         // merge the bed files to create a single mask BED for each sample that 
         // both masks low coverage areas as well as repeat regions in the reference
         // genome

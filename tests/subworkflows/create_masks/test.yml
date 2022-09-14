@@ -4,4 +4,10 @@
     - subworkflows
     - create_masks
   files:
-    - path: ./test_output/reads_qc/phcueqc/DRR040053.phcue.txt
+    - path: ./test_output/create_masks/bedtools_genomecov/versions.yml
+    - path: ./test_output/create_masks/bedtools_genomecov/SRR5276050.bed
+    - path: ./test_output/create_masks/bedtools_merge/versions.yml
+    - path: ./test_output/create_masks/bedtools_merge/SRR5276050.bedtools-merge.bed
+    - path: ./test_output/create_masks/minimap2/reference.bed
+    - path: ./test_output/create_masks/minimap2/versions.yml
+    - path: ./test_output/create_masks/minimap2/reference.paf
