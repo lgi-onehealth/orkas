@@ -1,0 +1,7 @@
+- name: make alignment
+  command: nextflow -C tests/config/nextflow.config run ./tests/subworkflows/make_alignment -entry test_make_alignment -profile make_alignment
+  tags:
+    - subworkflows
+    - make_alignment
+  files:
+    - path: ./test_output/assembly/unicycler/DRR040053.assembly.gfa.gz
