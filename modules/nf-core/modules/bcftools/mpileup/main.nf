@@ -9,7 +9,7 @@ process BCFTOOLS_MPILEUP {
 
     input:
     tuple val(meta), path(bam)
-    path fasta
+    tuple val(meta_ref), path(fasta), path(fasta_fai)
     val save_mpileup
 
     output:
