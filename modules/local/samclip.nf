@@ -8,8 +8,7 @@ process SAMCLIP {
 
     input:
     tuple val(meta), path(sam)
-    path reference
-    path reference_index
+    tuple val(meta_ref), path(reference), path(reference_index)
 
     output:
     tuple val(meta), path("*.sam"), emit: sam
@@ -27,6 +26,7 @@ process SAMCLIP {
     if [ "$is_compressed" == true ]; then
         gzip -d -c $reference > $ref_filename
     fi
+    
     samclip \\
         $args \\
         --ref ${ref_filename} \\
