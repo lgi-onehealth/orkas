@@ -26,16 +26,14 @@ workflow VARIANT_DETECTION {
     take:
         reads
         reference
+        var_detection_mode
     main:
         samples = []
         populations = []
         cnv = []
-        var_detection_mode = 'bcftools'
-        SAMTOOLS_FAIDX([[],reference])
-        ref_ix = SAMTOOLS_FAIDX.out.fai.map {it -> it[1]}
         BOWTIE2_BUILD(reference)
         BOWTIE2_ALIGN(reads, BOWTIE2_BUILD.out.index, false, false, true)
-        SAMCLIP(BOWTIE2_ALIGN.out.sam, reference, ref_ix)
+        SAMCLIP(BOWTIE2_ALIGN.out.sam, reference)
         SAMTOOLS_SORT_NAME(SAMCLIP.out.sam)
         SAMTOOLS_FIXMATE(SAMTOOLS_SORT_NAME.out.bam)
         SAMTOOLS_SORT_ORDER(SAMTOOLS_FIXMATE.out.bam)
@@ -52,7 +50,7 @@ workflow VARIANT_DETECTION {
                     return [meta, input_1, input_1_index, input_2, input_2_index, target_bed]
                     }
                 }
-            FREEBAYES(bam_ch, reference, ref_ix, samples, populations, cnv)
+            FREEBAYES(bam_ch, reference, samples, populations, cnv)
             BCFTOOLS_INDEX(FREEBAYES.out.vcf)
             vcf_ch = FREEBAYES.out.vcf.cross(BCFTOOLS_INDEX.out.csi) {it -> it[0].id}.map {
                 def meta = it[0][0]
