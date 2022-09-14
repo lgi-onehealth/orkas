@@ -9,7 +9,7 @@ workflow test_variant_detection {
                ],
                []
             ];
-    ref = file("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/889/925/GCF_016889925.1_ASM1688992v1/GCF_016889925.1_ASM1688992v1_genomic.fna.gz", checkIfExists: true);
+    ref = file("https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/889/925/GCF_016889925.1_ASM1688992v1/GCF_016889925.1_ASM1688992v1_genomic.gbff.gz", checkIfExists: true);
 
     VARIANT_DETECTION(reads, ref)
 }
