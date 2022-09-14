@@ -1,5 +1,5 @@
 process GOALIGN_APPEND {
-    tag "$alignment_1"
+    tag "$meta_ref.id"
     label 'process_low'
 
     conda (params.enable_conda ? "bioconda::goalign=0.3.5" : null)
@@ -8,11 +8,11 @@ process GOALIGN_APPEND {
         'quay.io/biocontainers/goalign:0.3.5--h65a6115_0' }"
 
     input:
-    tuple val(meta_ref) path(reference)
+    tuple val(meta_ref), path(reference), path(reference_fai)
     path alignment_2
 
     output:
-    path "${output_filename}"     , emit: alignment
+    path "*.fasta"     , emit: fasta
     path "versions.yml"           , emit: versions
 
     when:
@@ -20,11 +20,11 @@ process GOALIGN_APPEND {
 
     script:
     def args = task.ext.args ?: ''
-    output_filename = "raw-align.goalign-append.fasta"
+    
     """
     goalign append \
-        -i $alignment_1 \
-        -o $output_filename \
+        -i $reference \
+        -o alignment.goalign-append.fasta \
         $args \
         $alignment_2
 
