@@ -9,7 +9,7 @@ process BCFTOOLS_NORM {
 
     input:
     tuple val(meta), path(vcf), path(tbi)
-    path(fasta)
+    tuple val(meta_ref), path(fasta), path(fasta_fai)
 
     output:
     tuple val(meta), path("*.gz") , emit: vcf
