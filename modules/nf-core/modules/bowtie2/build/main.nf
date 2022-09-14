@@ -8,7 +8,7 @@ process BOWTIE2_BUILD {
         'quay.io/biocontainers/bowtie2:2.4.4--py39hbb4e92a_0' }"
 
     input:
-    path fasta
+    tuple val(meta_ref), path(fasta), path(fai)
 
     output:
     path 'bowtie2'      , emit: index
