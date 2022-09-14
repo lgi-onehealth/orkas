@@ -9,9 +9,13 @@ process SAMTOOLS_FAIDX {
 
     input:
     tuple val(meta), path(fasta)
+    val chromosome_id
+    val region_start
+    val region_end
 
     output:
     tuple val(meta), path ("*.fai"), emit: fai
+    tuple val(meta), path("*.fasta"), emit: fasta, optional: true
     path "versions.yml"            , emit: versions
 
     when:
@@ -21,6 +25,8 @@ process SAMTOOLS_FAIDX {
     def args = task.ext.args ?: ''
     def is_compressed = fasta.getName().endsWith('.gz')
     def fasta_name = fasta.getName().replace(".gz", '')
+    def subregion = region_start ? ":${region_start}-${region_end}" : ""
+    def region = chromosome_id ? "${chromosome_id}${subregion} > ref_chrom.fasta" : ""
     """
     if [ "$is_compressed" = true ]; then
         bgzip -c -d $fasta > ${fasta_name}
@@ -28,7 +34,8 @@ process SAMTOOLS_FAIDX {
 
     samtools \\
         faidx \\
-        ${fasta_name}
+        $args \\
+        ${fasta_name} $region
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
