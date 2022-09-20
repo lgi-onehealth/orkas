@@ -3,8 +3,7 @@ include { BCFTOOLS_INDEX } from '../../modules/nf-core/modules/bcftools/index/ma
 include { BCFTOOLS_CONSENSUS } from '../../modules/nf-core/modules/bcftools/consensus/main'
 include { GOALIGN_APPEND } from '../../modules/local/goalign/append'
 include { GOALIGN_REPLACE } from '../../modules/local/goalign/replace'
-include { GOALIGN_CLEANSEQ } from '../../modules/local/goalign/cleanseq'
-include { CLIPKIT } from '../../modules/local/clipkit'
+include { GOALIGN_CLEANSITES } from '../../modules/local/goalign/cleansites'
 
 workflow MAKE_ALIGNMENT {
     take:
@@ -33,9 +32,7 @@ workflow MAKE_ALIGNMENT {
         // replace non ACGTacgt characters with -
         GOALIGN_REPLACE(GOALIGN_APPEND.out.fasta)
         // remove columns with more than 0% of gaps
-        GOALIGN_CLEANSEQ(GOALIGN_REPLACE.out.fasta)
-        // apply clipkit to clean up the alignment
-        CLIPKIT(GOALIGN_CLEANSEQ.out.fasta)
+        GOALIGN_CLEANSITES(GOALIGN_REPLACE.out.fasta)
 
     emit:
         alignment = CLIPKIT.out.fasta
