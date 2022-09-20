@@ -22,7 +22,7 @@ process CLIPKIT {
 
     """
     clipkit \\
-        $aln \\
+        $fasta \\
         $args \\
         -o alignment.clipkit.fasta
 
