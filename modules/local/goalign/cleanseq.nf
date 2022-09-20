@@ -25,10 +25,10 @@ process GOALIGN_CLEANSEQ {
         --auto-detect \\
         clean \\
         seqs \\
-        $options.args \\
+        $args \\
         -t $task.cpus \\
         -o alignment.goalign-cleanseq.fasta \\
-        -i $aln
+        -i $fasta
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
