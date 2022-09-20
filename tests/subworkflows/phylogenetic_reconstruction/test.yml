@@ -1,0 +1,7 @@
+- name: phylogenetic reconstruction
+  command: nextflow -C tests/config/nextflow.config run ./tests/subworkflows/phylogenetic_reconstruction -entry test_phylogenetic_reconstruction -profile phylogenetic_reconstruction
+  tags:
+    - subworkflows
+    - phylogenetic_reconstruction
+  files:
+    - path: ./test_output/assembly/unicycler/DRR040053.assembly.gfa.gz
