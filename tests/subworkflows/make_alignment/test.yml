@@ -4,4 +4,15 @@
     - subworkflows
     - make_alignment
   files:
-    - path: ./test_output/assembly/unicycler/DRR040053.assembly.gfa.gz
+    - path: ./test_output/alignment/goalign_computedist/dist.txt
+    - path: ./test_output/alignment/goalign_computedist/versions.yml
+    - path: ./test_output/alignment/goalign_replace/alignment.goalign-replace.fasta
+    - path: ./test_output/alignment/goalign_replace/versions.yml
+    - path: ./test_output/alignment/bcftools_consensus/SRR5276050.fasta
+    - path: ./test_output/alignment/bcftools_consensus/versions.yml
+    - path: ./test_output/alignment/goalign_append/alignment.goalign-append.fasta
+    - path: ./test_output/alignment/goalign_append/versions.yml
+    - path: ./test_output/alignment/bcftools_index/SRR5276050.bcftools-annotate.vcf.gz.csi
+    - path: ./test_output/alignment/bcftools_index/versions.yml
+    - path: ./test_output/alignment/goalign_cleansites/versions.yml
+    - path: ./test_output/alignment/goalign_cleansites/alignment.goalign-cleanseq.fasta
