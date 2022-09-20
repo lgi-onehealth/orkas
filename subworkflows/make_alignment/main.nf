@@ -4,6 +4,7 @@ include { BCFTOOLS_CONSENSUS } from '../../modules/nf-core/modules/bcftools/cons
 include { GOALIGN_APPEND } from '../../modules/local/goalign/append'
 include { GOALIGN_REPLACE } from '../../modules/local/goalign/replace'
 include { GOALIGN_CLEANSITES } from '../../modules/local/goalign/cleansites'
+include { GOALIGN_COMPUTEDIST } from '../../modules/local/goalign/computedist'
 
 workflow MAKE_ALIGNMENT {
     take:
@@ -33,7 +34,9 @@ workflow MAKE_ALIGNMENT {
         GOALIGN_REPLACE(GOALIGN_APPEND.out.fasta)
         // remove columns with more than 0% of gaps
         GOALIGN_CLEANSITES(GOALIGN_REPLACE.out.fasta)
-
+        // compute the SNP distance matrix
+        GOALIGN_COMPUTEDIST(GOALIGN_CLEANSITES.out.fasta)
     emit:
         alignment = GOALIGN_CLEANSITES.out.fasta
+        snp_matrix = GOALIGN_COMPUTEDIST.out.snp_matrix
 }
