@@ -35,5 +35,5 @@ workflow MAKE_ALIGNMENT {
         GOALIGN_CLEANSITES(GOALIGN_REPLACE.out.fasta)
 
     emit:
-        alignment = CLIPKIT.out.fasta
+        alignment = GOALIGN_CLEANSITES.out.fasta
 }
