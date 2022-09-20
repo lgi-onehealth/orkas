@@ -22,10 +22,12 @@ process GOALIGN_APPEND {
     def args = task.ext.args ?: ''
     
     """
-    goalign append \
-        -i $reference \
-        -o alignment.goalign-append.fasta \
-        $args \
+    goalign \\
+        --auto-detect \\
+        append \\
+        -i $reference \\
+        -o alignment.goalign-append.fasta \\
+        $args \\
         $alignment_2
 
     cat <<-END_VERSIONS > versions.yml
