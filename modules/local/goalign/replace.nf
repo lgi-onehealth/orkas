@@ -23,7 +23,7 @@ process GOALIGN_REPLACE {
 
     """
     goalign \\
-        --autodetect \\
+        --auto-detect \\
         replace \\
         $args \\
         -t $task.cpus \\
