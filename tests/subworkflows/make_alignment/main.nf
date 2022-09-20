@@ -12,11 +12,11 @@ workflow test_make_alignment {
 
     // vcf input
     vcf = Channel.from([[
-        [id: 'test1'], file(params.test_data['vcfs']['test1'], checkIfExists: true)
+        [id: 'SRR5276050'], file(params.test_data['vcfs']['SRR5276050'], checkIfExists: true)
     ]])
     //mask input
     mask =Channel.from([[
-        [id: 'test1'], file(params.test_data['masks']['test1'], checkIfExists: true)
+        [id: 'SRR5276050'], file(params.test_data['masks']['SRR5276050'], checkIfExists: true)
     ]])
 
     REFERENCE_PREPROCESSING(reference, is_complete, chromosome_id)
