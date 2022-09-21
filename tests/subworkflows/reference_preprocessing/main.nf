@@ -2,9 +2,9 @@ include { REFERENCE_PREPROCESSING } from '../../../subworkflows/reference_prepro
 
 workflow test_reference_preprocessing {
 
-    reference = "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/889/925/GCF_016889925.1_ASM1688992v1/GCF_016889925.1_ASM1688992v1_genomic.gbff.gz"
-    is_complete = true
-    chromosome_id = "NZ_CP069563"
+    reference = params.reference
+    is_complete = params.ref_is_complete
+    chromosome_id = params.chromosome_id
 
     REFERENCE_PREPROCESSING(reference, is_complete, chromosome_id)
 }
